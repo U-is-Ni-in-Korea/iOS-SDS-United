@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "name=Checkmark Circle, size=32x32, theme=Default.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "name=Checkmark Circle, size=32x32, theme=Default@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "name=Checkmark Circle, size=32x32, theme=Default@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
