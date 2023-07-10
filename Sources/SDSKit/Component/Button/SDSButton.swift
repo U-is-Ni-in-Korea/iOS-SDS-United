@@ -50,7 +50,7 @@ public class SDSButton: UIButton {
             if sdsButtonType == .fill {
                 config?.background.backgroundColor = .lightBlue500
             } else {
-                config?.background.backgroundColor = .clear
+                config?.background.backgroundColor = .gray000
                 config?.background.strokeColor = .lightBlue500
                 config?.background.strokeWidth = 1
                 titleLabel?.textColor = .lightBlue600
@@ -60,7 +60,7 @@ public class SDSButton: UIButton {
             if sdsButtonType == .fill {
                 config?.background.backgroundColor = .gray300
             } else {
-                config?.background.backgroundColor = .clear
+                config?.background.backgroundColor = .gray000
                 config?.background.strokeColor = .gray400
                 config?.background.strokeWidth = 1
                 titleLabel?.textColor = .gray400
@@ -78,6 +78,36 @@ public class SDSButton: UIButton {
         self.configuration = config
     }
     
+    private func addGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self,
+                                                   action: #selector(didButtonPress(_:)))
+        gesture.minimumPressDuration = 0
+        self.addGestureRecognizer(gesture)
+    }
+    
+    var originColor: UIColor?
+    @objc private func didButtonPress(_ sender: UILongPressGestureRecognizer) {
+        var config = self.configuration
+        if sender.state == .began {
+            self.originColor = config?.background.backgroundColor
+            
+            if originColor == .gray000 {
+                config?.background.backgroundColor = self.originColor?.blendColors(tintColor: .lightBlue50)
+            }
+            else if originColor == .gray300 {
+                config?.background.backgroundColor = self.originColor?.blendColors(tintColor: .gray400)
+            }
+            else if originColor == .lightBlue500 {
+                config?.background.backgroundColor = self.originColor?.blendColors(tintColor: .lightBlue600)
+            }
+            
+        }
+        if sender.state == .ended {
+            config?.background.backgroundColor = originColor
+        }
+        self.configuration = config
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -88,7 +118,7 @@ public class SDSButton: UIButton {
         self.sdsButtonType = type
         self.setButtonConfig()
         self.buttonState = state
+        self.addGesture()
     }
-    
 
 }

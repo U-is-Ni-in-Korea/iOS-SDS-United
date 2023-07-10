@@ -78,4 +78,22 @@ public extension UIColor {
     static let yellow500 = UIColor(named: "Yellow500", in: .module, compatibleWith: nil)!
     static let yellow600 = UIColor(named: "Yellow600", in: .module, compatibleWith: nil)!
     
+    /**hovering effect를 위함**/
+    func blendColors(tintColor: UIColor) -> UIColor {
+        let ratioClamped = max(0, min(1, 0.5))
+        let inverseRatio = 1 - ratioClamped
+        
+        var red1: CGFloat = 0, green1: CGFloat = 0, blue1: CGFloat = 0, alpha1: CGFloat = 0
+        self.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1)
+        
+        var red2: CGFloat = 0, green2: CGFloat = 0, blue2: CGFloat = 0, alpha2: CGFloat = 0
+        tintColor.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2)
+        
+        let blendedRed = red1 * inverseRatio + red2 * ratioClamped
+        let blendedGreen = green1 * inverseRatio + green2 * ratioClamped
+        let blendedBlue = blue1 * inverseRatio + blue2 * ratioClamped
+        let blendedAlpha = alpha1 * inverseRatio + alpha2 * ratioClamped
+        
+        return UIColor(red: blendedRed, green: blendedGreen, blue: blendedBlue, alpha: blendedAlpha)
+    }
 }
