@@ -1,19 +1,11 @@
-//
-//  File.swift
-//  
-//
-//  Created by 김사랑 on 2023/07/11.
-//
-
 import UIKit
 import SnapKit
 
 public class AlertView: UIView {
-    // MARK: - Property
-//    var message: String
-    
     // MARK: - UI Property
-
+    
+    let backgroundView = UIView()
+    
     let alertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -37,14 +29,11 @@ public class AlertView: UIView {
         return label
     }()
     
-    lazy var messagelabel: UILabel = {
+    lazy var messageLabel: UILabel = {
         let label = UILabel()
-//        label.text = message
         label.textColor = .gray400
         label.font = SDSFont.body2.font
         label.numberOfLines = 2
-        label.setLineSpacing(lineHeightMultiple: 20/17)
-        label.textAlignment = .center
         return label
     }()
     
@@ -70,7 +59,6 @@ public class AlertView: UIView {
     
     let cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Action", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.lightBlue600, for: .normal)
         button.titleLabel?.font = SDSFont.body1Regular.font
@@ -80,7 +68,6 @@ public class AlertView: UIView {
     
     let okButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Action", for: .normal)
         button.backgroundColor = .white
         button.setTitleColor(.lightBlue600, for: .normal)
         button.titleLabel?.font = SDSFont.btn1.font
@@ -92,12 +79,15 @@ public class AlertView: UIView {
     // MARK: - Life Cycle
     
     public init(size: CGSize,
+                cancelButtonMessage: String? = nil,
+                okButtonMessage: String,
                 title: String? = nil,
                 message: String,
                 type: SDSAlertType) {
-
+        
         super.init(frame: .init(origin: .zero,
                                 size: size))
+        setStyle()
         setLayout(size: size)
         if title == nil {
             titleLabel.isHidden = true
@@ -108,7 +98,14 @@ public class AlertView: UIView {
         if type == .noti {
             cancelButton.isHidden = true
         }
-        messagelabel.text = message
+        if cancelButtonMessage == nil {
+            cancelButton.isHidden = true
+        }
+        else {
+            cancelButton.setTitle(cancelButtonMessage, for: .normal)
+        }
+        okButton.setTitle(okButtonMessage, for: .normal)
+        messageLabel.text = message
     }
     
     @available(*, unavailable)
@@ -116,19 +113,37 @@ public class AlertView: UIView {
         fatalError("SecondView Error!")
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        messageLabel.setLineSpacing(lineHeightMultiple: 20/17)
+        messageLabel.textAlignment = .center
+    }
+    
     // MARK: - Setting
     
+    private func setStyle() {
+        backgroundView.backgroundColor = .black
+        backgroundView.alpha = 0.4
+    }
+    
     private func setLayout(size: CGSize) {
-        super.addSubview(alertView)
+        self.addSubview(backgroundView)
+        self.addSubview(alertView)
         [textStackView, buttonStackBackView].forEach {
             alertView.addSubview($0)
         }
-        [titleLabel, messagelabel].forEach {
+        [titleLabel, messageLabel].forEach {
             textStackView.addArrangedSubview($0)
         }
         buttonStackBackView.addSubview(buttonStackView)
         [cancelButton, okButton].forEach {
             buttonStackView.addArrangedSubview($0)
+        }
+        
+        backgroundView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.equalTo(UIScreen.main.bounds.size.height)
+            $0.width.equalTo(UIScreen.main.bounds.size.width)
         }
         
         alertView.snp.makeConstraints {
@@ -144,13 +159,17 @@ public class AlertView: UIView {
             
         }
         
-//        titleLabel.snp.makeConstraints {
-//            $0.height.equalTo(24)
-//        }
+        titleLabel.snp.makeConstraints {
+            $0.height.equalTo(24)
+        }
         
-//        messagelabel.snp.makeConstraints {
-//            $0.height.equalTo(40)
-//        }
+        messageLabel.snp.makeConstraints {
+            if messageLabel.numberOfLines == 1 {
+                $0.height.equalTo(20)
+            } else {
+                $0.height.equalTo(40)
+            }
+        }
         
         buttonStackBackView.snp.makeConstraints {
             $0.top.equalTo(textStackView.snp.bottom).offset(24)
@@ -165,21 +184,16 @@ public class AlertView: UIView {
         }
         
         cancelButton.addTarget(self,
-                             action: #selector(cancelButtonTapped),
-                             for: .touchUpInside)
+                               action: #selector(cancelButtonTapped),
+                               for: .touchUpInside)
         
         okButton.addTarget(self,
-                             action: #selector(okButtonTapped),
-                             for: .touchUpInside)
-        
-        
+                           action: #selector(okButtonTapped),
+                           for: .touchUpInside)
     }
-    
     
     // MARK: - Action Helper
     
-    
-
     public var okButtonTapCompletion: (() -> Void)?
     public var cancelButtonTapCompletion: (() -> Void)?
     
@@ -187,14 +201,9 @@ public class AlertView: UIView {
         guard let completion = cancelButtonTapCompletion else {return}
         completion()
     }
-        
+    
     @objc private func okButtonTapped() {
         guard let completion = okButtonTapCompletion else {return}
         completion()
-
     }
-    
-    // MARK: - Custom Method
-    
 }
-
