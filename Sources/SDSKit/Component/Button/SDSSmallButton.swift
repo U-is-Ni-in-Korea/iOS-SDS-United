@@ -5,7 +5,7 @@ import SnapKit
 import Kingfisher
 #endif
 
-public class SDSButton: UIButton {
+public class SDSSmallButton: UIButton {
     private var sdsButtonType: SDSButtonType = .fill
     private var _buttonState: SDSButtonState = .disabled
     
@@ -26,18 +26,18 @@ public class SDSButton: UIButton {
         case .disabled:
             if sdsButtonType == .fill {
                 config?.attributedTitle = title.setAttributeString(textColor: .gray000,
-                                                                   font: SDSFont.btn1.font)
+                                                                   font: SDSFont.btn2.font)
             } else {
                 config?.attributedTitle = title.setAttributeString(textColor: .gray400,
-                                                                   font: SDSFont.btn1.font)
+                                                                   font: SDSFont.btn2.font)
             }
         case .enabled:
             if sdsButtonType == .fill {
                 config?.attributedTitle = title.setAttributeString(textColor: .gray000,
-                                                                   font: SDSFont.btn1.font)
+                                                                   font: SDSFont.btn2.font)
             } else {
                 config?.attributedTitle = title.setAttributeString(textColor: .lightBlue600,
-                                                                   font: SDSFont.btn1.font)
+                                                                   font: SDSFont.btn2.font)
             }
         }
         self.configuration = config
@@ -72,8 +72,8 @@ public class SDSButton: UIButton {
     private func setButtonConfig() {
         var config = UIButton.Configuration.plain()
         config.background.cornerRadius = 10.adjusted
-        config.imagePadding = 8
-        config.imagePlacement = .leading
+        config.imagePadding = 4
+        config.imagePlacement = .trailing
         config.titleAlignment = .center
         self.configuration = config
     }
