@@ -16,7 +16,7 @@ extension UIView {
         addSubview(blurEffectView)
     }
     
-    public func applyDepth3_2Shadow() {
+    public func applyBlurAndDepth3_2Shadow() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 1
@@ -72,7 +72,7 @@ extension CALayer {
         shadowPath = nil
     }
     
-    public func applyDepthAndDepth3_1Shadow() {
+    public func applyBlurAndDepth3_1Shadow() {
         masksToBounds = false
         shadowColor = UIColor(hex: 0x000000).cgColor
         shadowOpacity = 0.25
