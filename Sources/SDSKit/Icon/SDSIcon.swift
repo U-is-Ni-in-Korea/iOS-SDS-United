@@ -26,5 +26,7 @@ public enum SDSIcon {
     public static var icReset: UIImage { .load(name: "icReset") }
     public static var icShare20: UIImage { .load(name: "icShare20") }
     public static var icShare24: UIImage { .load(name: "icShare24") }
+    public static var icHeartFill: UIImage { .load(name: "icHeartFill") }
+    public static var icHeartEmpty: UIImage { .load(name: "icHeartEmpty") }
     
 }
