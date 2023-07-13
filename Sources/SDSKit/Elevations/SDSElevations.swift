@@ -16,7 +16,7 @@ extension UIView {
         addSubview(blurEffectView)
     }
     
-    public func applyBlurAndDepth3_2Shadow() {
+    public func applyDepth3_2Shadow() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 1
@@ -46,20 +46,20 @@ extension CALayer {
         shadowPath = nil
     }
     
-    public func applyDepth2_1Shadow() {
-        masksToBounds = false
-        shadowColor = UIColor(hex: 0xE9EFEF).cgColor
-        shadowOpacity = 0.1
-        shadowOffset = CGSize(width: -3, height: 3)
-        shadowRadius = 6 / UIScreen.main.scale
-        shadowPath = nil
-    }
     public func applyDepth2_2Shadow() {
         masksToBounds = false
+        shadowColor = UIColor(hex: 0xE9EFEF).cgColor
+        shadowOpacity = 1
+        shadowOffset = CGSize(width: -3, height: -3)
+        shadowRadius = 10 / UIScreen.main.scale
+        shadowPath = nil
+    }
+    public func applyDepth2_1Shadow() {
+        masksToBounds = false
         shadowColor = UIColor(hex: 0xABBABA).cgColor
-        shadowOpacity = 0.2
+        shadowOpacity = 0.12
         shadowOffset = CGSize(width: 6, height: 7)
-        shadowRadius = 6 / UIScreen.main.scale
+        shadowRadius = 25 / UIScreen.main.scale
         let rect = bounds.insetBy(dx: -11, dy: -11)
         shadowPath = UIBezierPath(rect: rect).cgPath
     }
@@ -72,7 +72,7 @@ extension CALayer {
         shadowPath = nil
     }
     
-    public func applyBlurAndDepth3_1Shadow() {
+    public func applyDepthAndDepth3_1Shadow() {
         masksToBounds = false
         shadowColor = UIColor(hex: 0x000000).cgColor
         shadowOpacity = 0.25
@@ -121,4 +121,3 @@ extension CALayer {
         }
     }
 }
-
