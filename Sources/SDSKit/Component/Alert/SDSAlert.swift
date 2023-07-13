@@ -4,8 +4,6 @@ import SnapKit
 public class AlertView: UIView {
     // MARK: - UI Property
     
-    let backgroundView = UIView()
-    
     let alertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -33,7 +31,7 @@ public class AlertView: UIView {
         let label = UILabel()
         label.textColor = .gray400
         label.font = SDSFont.body2.font
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
     
@@ -78,17 +76,16 @@ public class AlertView: UIView {
     
     // MARK: - Life Cycle
     
-    public init(size: CGSize,
-                title: String? = nil,
+    public init(title: String? = nil,
                 message: String,
                 cancelButtonMessage: String? = nil,
                 okButtonMessage: String,
                 type: SDSAlertType) {
         
         super.init(frame: .init(origin: .zero,
-                                size: size))
+                                size: .zero))
         setStyle()
-        setLayout(size: size)
+        setLayout()
         if title == nil {
             titleLabel.isHidden = true
         }
@@ -119,15 +116,14 @@ public class AlertView: UIView {
         messageLabel.textAlignment = .center
     }
     
+    
     // MARK: - Setting
     
     private func setStyle() {
-        backgroundView.backgroundColor = .black
-        backgroundView.alpha = 0.4
+        self.backgroundColor = .black.withAlphaComponent(0.4)
     }
     
-    private func setLayout(size: CGSize) {
-        self.addSubview(backgroundView)
+    private func setLayout() {
         self.addSubview(alertView)
         [textStackView, buttonStackBackView].forEach {
             alertView.addSubview($0)
@@ -140,16 +136,9 @@ public class AlertView: UIView {
             buttonStackView.addArrangedSubview($0)
         }
         
-        backgroundView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-            $0.height.equalTo(UIScreen.main.bounds.size.height)
-            $0.width.equalTo(UIScreen.main.bounds.size.width)
-        }
-        
         alertView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
-            $0.width.equalTo(size.width.adjusted)
-            $0.height.equalTo(size.height.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(52)
         }
         
         textStackView.snp.makeConstraints {
@@ -161,14 +150,6 @@ public class AlertView: UIView {
         
         titleLabel.snp.makeConstraints {
             $0.height.equalTo(24)
-        }
-        
-        messageLabel.snp.makeConstraints {
-            if messageLabel.numberOfLines == 1 {
-                $0.height.equalTo(20)
-            } else {
-                $0.height.equalTo(40)
-            }
         }
         
         buttonStackBackView.snp.makeConstraints {

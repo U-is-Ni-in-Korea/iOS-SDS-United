@@ -4,16 +4,13 @@ import SnapKit
 #endif
 
 public extension UIView {
-    func showAlert(size: CGSize,
-                   title: String? = nil,
+    func showAlert(title: String? = nil,
                    message: String,
                    cancelButtonMessage: String? = nil,
                    okButtonMessage: String,
                    type: SDSAlertType) -> AlertView {
         
-        
-        let alertView = AlertView(size: size,
-                                  title: title,
+        let alertView = AlertView(title: title,
                                   message: message,
                                   cancelButtonMessage: cancelButtonMessage,
                                   okButtonMessage: okButtonMessage,
@@ -21,11 +18,8 @@ public extension UIView {
         
         self.addSubview(alertView)
         alertView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-            $0.width.equalTo(size.width)
-            $0.height.equalTo(size.height)
+            $0.edges.equalToSuperview()
         }
-        
         alertView.alpha = 0
         UIView.animate(withDuration: 0.3) {
             alertView.alpha = 1
