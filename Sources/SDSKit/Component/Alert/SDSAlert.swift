@@ -79,10 +79,10 @@ public class AlertView: UIView {
     // MARK: - Life Cycle
     
     public init(size: CGSize,
-                cancelButtonMessage: String? = nil,
-                okButtonMessage: String,
                 title: String? = nil,
                 message: String,
+                cancelButtonMessage: String? = nil,
+                okButtonMessage: String,
                 type: SDSAlertType) {
         
         super.init(frame: .init(origin: .zero,
@@ -95,9 +95,7 @@ public class AlertView: UIView {
         else {
             titleLabel.text = title
         }
-        if type == .noti {
-            cancelButton.isHidden = true
-        }
+        messageLabel.text = message
         if cancelButtonMessage == nil {
             cancelButton.isHidden = true
         }
@@ -105,7 +103,9 @@ public class AlertView: UIView {
             cancelButton.setTitle(cancelButtonMessage, for: .normal)
         }
         okButton.setTitle(okButtonMessage, for: .normal)
-        messageLabel.text = message
+        if type == .noti {
+            cancelButton.isHidden = true
+        }
     }
     
     @available(*, unavailable)

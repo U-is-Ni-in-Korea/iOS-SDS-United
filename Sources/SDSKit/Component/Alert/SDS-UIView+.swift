@@ -4,38 +4,26 @@ import SnapKit
 #endif
 
 public extension UIView {
-    func showAlert(size: SDSAlertNumberOfLines,
-                   cancelButtonMessage: String? = nil,
-                   okButtonMessage: String,
+    func showAlert(size: CGSize,
                    title: String? = nil,
                    message: String,
+                   cancelButtonMessage: String? = nil,
+                   okButtonMessage: String,
                    type: SDSAlertType) -> AlertView {
         
-        var viewSize = CGSize()
         
-        switch size {
-        case .singleLineTitled:
-            viewSize = CGSize(width: 271, height: 148)
-        case .singleLineUnTitled:
-            viewSize = CGSize(width: 271, height: 120)
-        case .multiLineTitled:
-            viewSize = CGSize(width: 271, height: 168)
-        case .multiLineUnTitled:
-            viewSize = CGSize(width: 271, height: 140)
-        }
-        
-        let alertView = AlertView(size: viewSize,
-                                  cancelButtonMessage: cancelButtonMessage,
-                                  okButtonMessage: okButtonMessage,
+        let alertView = AlertView(size: size,
                                   title: title,
                                   message: message,
+                                  cancelButtonMessage: cancelButtonMessage,
+                                  okButtonMessage: okButtonMessage,
                                   type: type)
         
-        self.addSubview( alertView)
+        self.addSubview(alertView)
         alertView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
-            $0.width.equalTo(viewSize.width)
-            $0.height.equalTo(viewSize.height)
+            $0.width.equalTo(size.width)
+            $0.height.equalTo(size.height)
         }
         
         alertView.alpha = 0
