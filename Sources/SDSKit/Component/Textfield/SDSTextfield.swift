@@ -9,10 +9,14 @@ import UIKit
 import SnapKit
 
 public class SDSTextfield: UIView {
+    
+    public var letters: Int = 10
         
-    lazy var sdsTextfield: UITextField = {
+    public lazy var sdsTextfield: UITextField = {
         let textfield = UITextField()
         textfield.layer.cornerRadius = 10
+        textfield.layer.borderWidth = 1
+        textfield.layer.borderColor = UIColor.gray200.cgColor
         textfield.font = SDSFont.body2.font
         textfield.backgroundColor = .gray000
         textfield.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 15.0, height: 0.0)) //왼쪽 여백 주기
@@ -21,27 +25,28 @@ public class SDSTextfield: UIView {
         return textfield
     }()
     
-    lazy var textfieldCountLabel: UILabel = {
+    public lazy var textfieldCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/10"
+        label.text = "0/\(letters)"
         label.textColor = .gray400
         label.font = SDSFont.caption.font
         return label
     }()
     
-    lazy var errorLabel: UILabel = {
+    public lazy var errorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Error message"
         label.font = SDSFont.caption.font
         label.textColor = .red500
         label.isHidden = true
         return label
     }()
 
-    public init(placeholder: String) {
+    public init(placeholder: String, errorMessage: String, letterLimit: Int) {
         super.init(frame: .zero)
         sdsTextfield.delegate = self
         sdsTextfield.placeholder = placeholder
+        errorLabel.text = errorMessage
+        letters = letterLimit
         setLayout()
     }
     
@@ -70,34 +75,28 @@ public class SDSTextfield: UIView {
             $0.trailing.equalTo(sdsTextfield.snp.trailing)
         }
     }
-    
-    func setTextfieldType() {
-        
-    }
 }
 
 extension SDSTextfield: UITextFieldDelegate {
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.lightBlue500.cgColor
-        textField.layer.borderWidth = 1
     }
 
     @objc public func textfieldDidChange(_ sender: Any) {
-        if sdsTextfield.text!.count > 10 {
+        guard let textFieldText = sdsTextfield.text else {return}
+        if textFieldText.count > letters {
             sdsTextfield.deleteBackward()
             sdsTextfield.layer.borderColor = UIColor.red500.cgColor
-            sdsTextfield.layer.borderWidth = 1
             errorLabel.isHidden = false
         } else {
             sdsTextfield.layer.borderColor = UIColor.lightBlue500.cgColor
             errorLabel.isHidden = true
         }
-        textfieldCountLabel.text = "\(sdsTextfield.text!.count)/10"
+        textfieldCountLabel.text = "\(textFieldText.count)/\(letters)"
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.gray200.cgColor
-        textField.layer.borderWidth = 1
     }
 }
