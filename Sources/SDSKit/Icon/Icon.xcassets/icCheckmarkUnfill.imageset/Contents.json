@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "name=arrow reset, size=24x24, theme=Default.svg",
+      "filename" : "name=Checkmark Circle, size=32x32, theme=Default.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

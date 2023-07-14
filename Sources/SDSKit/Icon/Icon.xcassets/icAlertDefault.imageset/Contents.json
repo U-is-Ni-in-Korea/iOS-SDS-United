@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "name=Alert, size=24x24, theme=Defult.png",
+      "filename" : "name=Alert, size=24x24, theme=Defult.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "name=Alert, size=24x24, theme=Defult@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "name=Alert, size=24x24, theme=Defult@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

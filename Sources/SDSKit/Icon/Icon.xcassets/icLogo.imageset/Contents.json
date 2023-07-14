@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "name=arrow reset, size=24x24, theme=Default.svg",
+      "filename" : "logotype.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
