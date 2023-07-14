@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "name=dismiss, size=36x36, theme=Default.png",
+      "filename" : "name=dismiss, size=36x36, theme=Default.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "name=dismiss, size=36x36, theme=Default@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "name=dismiss, size=36x36, theme=Default@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

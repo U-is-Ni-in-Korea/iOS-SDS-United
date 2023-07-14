@@ -30,7 +30,7 @@ public class SDSNavigationBar: UIView {
         let label = UILabel()
         label.textColor = .gray600
         label.text = navigationTitle
-        label.font = SDSFont.title1.font
+        label.font = SDSFont.subTitle.font
         return label
     }()
     

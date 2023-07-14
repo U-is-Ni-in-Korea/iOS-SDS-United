@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "name=Info, size=24x24, theme=Default.png",
+      "filename" : "name=Info, size=24x24, theme=Default.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "name=Info, size=24x24, theme=Default@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "name=Info, size=24x24, theme=Default@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
