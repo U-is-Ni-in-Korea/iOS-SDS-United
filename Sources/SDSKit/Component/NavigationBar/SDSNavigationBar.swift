@@ -23,7 +23,8 @@ public class SDSNavigationBar: UIView {
     
     public let backButton: UIButton = {
         let button = UIButton()
-        button.setImage(SDSIcon.icChevronLeft, for: .normal)
+        button.setImage(SDSIcon.icNavigationBarLeft.resize(targetSize: CGSize(width: 24, height: 24)), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
     
