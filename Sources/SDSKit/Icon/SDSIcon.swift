@@ -21,5 +21,5 @@ public enum SDSIcon {
     public static var icReset: UIImage { .load(name: "icReset") }
     public static var icSad: UIImage { .load(name: "icSad") }
     public static var icShare: UIImage { .load(name: "icShare") }
-    
+    public static var icNavigationBarLeft: UIImage { .load(name: "icNavigationBarLeft") }
 }

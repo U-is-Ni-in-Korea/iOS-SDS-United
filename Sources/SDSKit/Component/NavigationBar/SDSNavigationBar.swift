@@ -10,6 +10,7 @@ public class SDSNavigationBar: UIView {
     public var rightBarLeftButtonItemCompletionHandler: (() -> Void)?
     public var rightBarRightButtonItemCompletionHandler: (() -> Void)?
     public var rightBarSingleButtonLabelCompletionHandler: (() -> Void)?
+    public var backButtonCompletionHandler: (() -> Void)?
 
     public var singleButtonTitle: String = "" {
         didSet {
@@ -20,9 +21,10 @@ public class SDSNavigationBar: UIView {
     public var navigationTitle: String?
     
     
-    let backButton: UIButton = {
+    public let backButton: UIButton = {
         let button = UIButton()
-        button.setImage(SDSIcon.icChevronLeft, for: .normal)
+        button.setImage(SDSIcon.icNavigationBarLeft.resize(targetSize: CGSize(width: 24, height: 24)), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
     
@@ -125,6 +127,7 @@ public class SDSNavigationBar: UIView {
         rightBarLeftButtonItem.addTarget(self, action: #selector(rightBarLeftButtonItemTapped), for: .touchUpInside)
         rightBarRightButtonItem.addTarget(self, action: #selector(rightBarRightButtonItemTapped), for: .touchUpInside)
         rightBarSingleButtonItem.addTarget(self, action: #selector(rightBarSingleButtonItemTapped), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     @objc func rightBarLeftButtonItemTapped() {
         rightBarLeftButtonItemCompletionHandler?()
@@ -134,6 +137,9 @@ public class SDSNavigationBar: UIView {
     }
     @objc func rightBarSingleButtonItemTapped() {
         rightBarSingleButtonLabelCompletionHandler?()
+    }
+    @objc func backButtonTapped() {
+        backButtonCompletionHandler?()
     }
 
     func hasTitleItem(hasTitle: Bool) {
