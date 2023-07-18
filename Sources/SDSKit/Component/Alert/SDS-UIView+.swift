@@ -5,7 +5,7 @@ import SnapKit
 
 public extension UIView {
     func showAlert(title: String? = nil,
-                   message: String,
+                   message: String? = nil,
                    cancelButtonMessage: String? = nil,
                    okButtonMessage: String,
                    type: SDSAlertType) -> AlertView {
