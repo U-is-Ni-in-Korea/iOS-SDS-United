@@ -28,7 +28,7 @@ public class SDSNavigationBar: UIView {
         return button
     }()
     
-    lazy var titleLabel: UILabel = {
+    public lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray600
         label.text = navigationTitle
@@ -36,7 +36,7 @@ public class SDSNavigationBar: UIView {
         return label
     }()
     
-    lazy var rightBarLeftButtonItem: UIButton = {
+    public lazy var rightBarLeftButtonItem: UIButton = {
         let button = UIButton()
         if rightBarButtonImages.count == 2{
             button.setImage(rightBarButtonImages[1], for: .normal)
@@ -44,7 +44,7 @@ public class SDSNavigationBar: UIView {
         return button
     }()
     
-    lazy var rightBarRightButtonItem: UIButton = {
+    public lazy var rightBarRightButtonItem: UIButton = {
         let button = UIButton()
         if rightBarButtonImages.count >= 1 {
             button.setImage(rightBarButtonImages[0], for: .normal)
@@ -52,14 +52,14 @@ public class SDSNavigationBar: UIView {
         return button
     }()
     
-    let rightBarSingleButtonLabel: UILabel = {
+    public let rightBarSingleButtonLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightBlue600
         label.font = SDSFont.body1.font
         return label
     }()
     
-    let rightBarSingleButtonItem: UIButton = {
+    public let rightBarSingleButtonItem: UIButton = {
         let button = UIButton()
         return button
     }()
