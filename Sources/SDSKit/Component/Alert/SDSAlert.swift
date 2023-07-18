@@ -77,7 +77,7 @@ public class AlertView: UIView {
     // MARK: - Life Cycle
     
     public init(title: String? = nil,
-                message: String,
+                message: String? = nil,
                 cancelButtonMessage: String? = nil,
                 okButtonMessage: String,
                 type: SDSAlertType) {
@@ -92,7 +92,13 @@ public class AlertView: UIView {
         else {
             titleLabel.text = title
         }
-        messageLabel.text = message
+        if message == nil {
+            messageLabel.isHidden = true
+        }
+        else {
+            messageLabel.text = message
+        }
+//        messageLabel.text = message
         if cancelButtonMessage == nil {
             cancelButton.isHidden = true
         }
