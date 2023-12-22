@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "c1f60c63f356d364f4284ba82961acbe7de79bcc",
-        "version" : "7.8.1"
+        "revision" : "add0a87ec4e31e2ca2a0b2085f0559201e4f5918",
+        "version" : "7.10.1"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios",
       "state" : {
-        "revision" : "d6feea26a370019b4d3a85f5984cb95a2734776f",
-        "version" : "4.2.0"
+        "revision" : "3f1202f254ad5d71f6c5b518ed2d6b9e2abe6969",
+        "version" : "4.3.4"
       }
     },
     {
