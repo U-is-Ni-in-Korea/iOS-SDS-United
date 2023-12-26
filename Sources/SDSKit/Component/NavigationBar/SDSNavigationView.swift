@@ -2,14 +2,6 @@
 import SwiftUI
 #endif
 
-public enum SDSNavigationStyle {
-    case leftTitleRightDismissButton(title: String, dismissImage: Image, action: () -> Void)
-    case leftPopButtonMiddleTitle(title: String, action: () -> Void)
-    case titleRightDismissButton(title: String, dismissImage: Image, action: () -> Void)
-    case leftPopButtonMiddleTitleRightDismissButton(title: String, dismissImage: Image, popAction: () -> Void, dismissAction: () -> Void)
-    case leftPopButtonMiddleTitleRightCustomButton(title: String, customButtonTitle: String, popAction: () -> Void, dismissAction: () -> Void)
-}
-
 public struct SDSNavigationView: View {
     let style: SDSNavigationStyle
     public init(style: SDSNavigationStyle) {
@@ -27,7 +19,7 @@ public struct SDSNavigationView: View {
                 Button {
                     action()
                 } label: {
-                    dismissImage
+                    Image(uiImage: dismissImage)
                         .resizable()
                         .frame(width: 36, height: 36)
                 }
@@ -71,7 +63,7 @@ public struct SDSNavigationView: View {
                 Button {
                     action()
                 } label: {
-                    dismissImage
+                    Image(uiImage: dismissImage)
                         .resizable()
                         .frame(width: 36, height: 36)
                 }
@@ -98,7 +90,7 @@ public struct SDSNavigationView: View {
                 Button {
                     dismissAction()
                 } label: {
-                    dismissImage
+                    Image(uiImage: dismissImage)
                         .resizable()
                         .frame(width: 36, height: 36)
                 }
