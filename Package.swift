@@ -15,9 +15,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        Package.Dependency.package(url: "https://github.com/airbnb/lottie-ios", from: "4.2.0"),
+        Package.Dependency.package(url: "https://github.com/airbnb/lottie-ios", from: "4.3.4"),
         Package.Dependency.package(url: "https://github.com/SnapKit/SnapKit", from: "5.6.0"),
-        Package.Dependency.package(url: "https://github.com/onevcat/Kingfisher", from: "7.8.1")
+        Package.Dependency.package(url: "https://github.com/onevcat/Kingfisher", from: "7.10.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
